@@ -45,7 +45,7 @@
 
 ## 4. Khó khăn / Cần hỗ trợ
 
-- [ ] ...
+- Dạ hiện tại data em đã xử lý thủ công và gom thành hàm như vậy sau đó xử lý trong pipeline vẫn đúng yêu cầu của thầy không ạ, nếu sai mong thầy đề xuất phương án sửa cho đúng lại với yêu cầu của đề ạ.
 
 ---
 
