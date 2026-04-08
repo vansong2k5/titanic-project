@@ -30,7 +30,7 @@ function ResultCard({ result }) {
     };
 
     return (
-        <div style={cardStyle}>
+        <>{result ? (<div style={cardStyle}>
             <div style={emojiStyle}>
                 {isSurvived ? "🎉" : "💀"}
             </div>
@@ -44,7 +44,11 @@ function ResultCard({ result }) {
                     ? "Hành khách này có khả năng sống sót cao 🚢"
                     : "Rất tiếc, khả năng sống sót thấp 😢"}
             </p>
-        </div>
+        </div>) :
+           ( <div style={cardStyle}>
+                <p style={titleStyle}>Vui lồng nhập thông tin!</p>
+            </div>)}
+        </>
     );
 }
 

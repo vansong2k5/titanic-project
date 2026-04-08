@@ -3,7 +3,24 @@ import FormInput from './components/formInput';
 import ResultCard from './components/resultCar';
 
 function App() {
+  const [result, setResult] = React.useState(null);
+   const handleSubmit = async (data) => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
 
+      const json = await res.json();
+      setResult(json.result);
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const styles = {
     app: {
       minHeight: "100vh",
@@ -41,24 +58,19 @@ function App() {
 
   return (
     <div style={styles.app}>
-
-      {/* HEADER */}
       <div style={styles.header}>
         <h1 style={styles.title}>🚢 Titanic Survival Predictor</h1>
         <p style={styles.subtitle}>
           Dự đoán khả năng sống sót của hành khách
         </p>
       </div>
-
-      {/* CONTENT */}
       <div style={styles.container}>
         
         <div style={styles.card}>
-          <FormInput />
+          <FormInput onSubmit={handleSubmit}/>
         </div>
-
         <div style={styles.card}>
-          <ResultCard result={1} />
+          <ResultCard result={result} />
         </div>
 
       </div>
