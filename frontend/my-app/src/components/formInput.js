@@ -9,7 +9,7 @@ function FormInput({ onSubmit }) {
         Fare: "",
         SibSp: "",
         Parch: "",
-        ticket: "",
+        Ticket: "",
         Cabin: "",
         Embarked: ""
     });
@@ -31,7 +31,7 @@ function FormInput({ onSubmit }) {
             Fare: form.Fare,
             SibSp: form.SibSp,
             Parch: form.Parch,
-            ticket: form.ticket,
+            Ticket: form.Ticket,
             Cabin: form.Cabin,
             Name: form.Name,
             Embarked: form.Embarked
@@ -79,8 +79,8 @@ function FormInput({ onSubmit }) {
 
             <select name="Sex" value={form.Sex} onChange={handleChange} style={inputStyle}>
                 <option value="">Chọn giới tính</option>
-                <option value="0">Nam</option>
-                <option value="1">Nữ</option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
             </select>
 
             <input name="Age" placeholder="Tuổi" value={form.Age} onChange={handleChange} style={inputStyle} />

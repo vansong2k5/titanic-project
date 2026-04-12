@@ -30,7 +30,7 @@ function ResultCard({ result }) {
     };
 
     return (
-        <>{result ? (<div style={cardStyle}>
+        <>{result !==null && result!==undefined ? (<div style={cardStyle}>
             <div style={emojiStyle}>
                 {isSurvived ? "🎉" : "💀"}
             </div>

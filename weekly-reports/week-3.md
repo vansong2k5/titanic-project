@@ -1,7 +1,7 @@
 # Báo cáo Tuần 1
 
-**Tuần:** 1 (30/03/2026 – 05/04/2026)  
-**Nhóm:** [Tên/Số nhóm]  
+**Tuần:** 3 (30/03/2026 – 05/04/2026)  
+**Nhóm:** 5
 **Đề tài:** 5 –  Titanic Survival Prediction (Classification)  
 
 **Nhóm trưởng:** Nguyễn Đoàn Văn Song - 2351050153
