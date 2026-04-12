@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Dự Đoán Titanic</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; margin: 50px; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dự Đoán Sống Sót - Titanic</h2>
+        <form>
+            <input type="text" placeholder="Tên hành khách (VD: Jack Dawson)" required>
+            <select required>
+                <option value="">-- Chọn hạng vé --</option>
+                <option value="1">Hạng Thương Gia (Class 1)</option>
+                <option value="2">Hạng Phổ Thông (Class 2)</option>
+                <option value="3">Hạng Giá Rẻ (Class 3)</option>
+            </select>
+            <select required>
+                <option value="">-- Giới tính --</option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+            </select>
+            <input type="number" placeholder="Tuổi" required>
+            <button type="button">Tiến Hành Dự Đoán</button>
+        </form>
+    </div>
+</body>
+</html>
