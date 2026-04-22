@@ -1,10 +1,13 @@
 import React from 'react';
 import FormInput from './components/formInput';
-import ResultCard from './components/resultCar';
+import ResultCard from './components/resultCard';
 
 function App() {
   const [result, setResult] = React.useState(null);
-   const handleSubmit = async (data) => {
+  const [loading, setLoading] = React.useState(false);
+
+  const handleSubmit = async (data) => {
+    setLoading(true);
     try {
       const res = await fetch("http://127.0.0.1:5000/predict", {
         method: "POST",
@@ -15,12 +18,21 @@ function App() {
       });
 
       const json = await res.json();
+
+      if (!res.ok) {
+        console.error("API error:", json);
+        return;
+      }
+
       setResult(json.result);
 
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
+
   const styles = {
     app: {
       minHeight: "100vh",
@@ -65,9 +77,9 @@ function App() {
         </p>
       </div>
       <div style={styles.container}>
-        
+
         <div style={styles.card}>
-          <FormInput onSubmit={handleSubmit}/>
+          <FormInput onSubmit={handleSubmit} loading={loading} />
         </div>
         <div style={styles.card}>
           <ResultCard result={result} />

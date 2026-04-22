@@ -8,9 +8,13 @@ function ResultCard({ result }) {
         margin: "20px auto",
         padding: "25px",
         borderRadius: "16px",
-        background: isSurvived
-            ? "linear-gradient(135deg, #4caf50, #2ecc71)"
-            : "linear-gradient(135deg, #e74c3c, #c0392b)",
+        // Tách case: null = chưa có kết quả → màu xám/neutral
+        background: result === null
+            ? "linear-gradient(135deg, #9e9e9e, #616161)"   // chưa dự đoán
+            : isSurvived
+                ? "linear-gradient(135deg, #4caf50, #2ecc71)"
+                : "linear-gradient(135deg, #e74c3c, #c0392b)",
+
         color: "#fff",
         textAlign: "center",
         boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
@@ -46,7 +50,7 @@ function ResultCard({ result }) {
             </p>
         </div>) :
            ( <div style={cardStyle}>
-                <p style={titleStyle}>Vui lồng nhập thông tin!</p>
+                <p style={titleStyle}>Vui lòng nhập thông tin!</p>
             </div>)}
         </>
     );

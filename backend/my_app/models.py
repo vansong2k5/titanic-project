@@ -1,17 +1,18 @@
-from flask import Flask, request, jsonify
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime
-from sqlalchemy.orm import relationship
 from __init__ import db
-class User(db.Model):
-    name=db.Column(db.String(50),nullable=False)
+class Passenger(db.Model):
+    __tablename__ = 'passengers'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name=db.Column(db.String(255),nullable=False)
     pclass=db.Column(db.Integer,nullable=False)
-    sex=db.Column(db.Integer,nullable=False)
-    age=db.Column(db.Integer,nullable=False)
+    sex=db.Column(db.String(6),nullable=False)
+    age=db.Column(db.Float,nullable=False)
     fare=db.Column(db.Float,nullable=False)
     sibsp=db.Column(db.Integer,nullable=False)
     parch=db.Column(db.Integer,nullable=False)
-    ticket=db.Column(db.Integer,nullable=False)
-    cabin=db.Column(db.Integer,nullable=False)
-    embark=db.Column(db.Char,nullable=False)
-    
+    ticket=db.Column(db.String(20),nullable=True)
+    cabin=db.Column(db.String(10),nullable=True)
+    embarked=db.Column(db.String(1),nullable=False)
+    survived = db.Column(db.Integer, nullable=False)
+
 
