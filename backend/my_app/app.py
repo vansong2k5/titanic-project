@@ -1,3 +1,5 @@
+import os
+import json
 import numpy as np
 import pandas as pd
 from flask import request, jsonify
@@ -34,56 +36,56 @@ def preprocess_input(df):
 # Hàm validate
 def validate_input(data):
     errors = []
-    # --- Họ tên ---
+    # Họ tên
     name = data.get('Name', '').strip()
     if not name:
         errors.append("Name là bắt buộc")
     elif '.' not in name:
         errors.append("Name phải có định dạng 'Họ, Danh hiệu. Tên' (vd: Braund, Mr. Owen)")
-    # --- Hạng vé ---
+    # Hạng vé
     try:
         pclass = int(data.get('Pclass', ''))
         if pclass not in [1, 2, 3]:
             errors.append("Pclass phải là 1, 2 hoặc 3")
     except (ValueError, TypeError):
         errors.append("Pclass phải là số nguyên (1, 2 hoặc 3)")
-    # --- Giới tính ---
+    # Giới tính
     sex = data.get('Sex', '')
     if sex not in ['male', 'female']:
         errors.append("Sex phải là 'male' hoặc 'female'")
-    # --- Tuổi ---
+    # Tuổi
     try:
         age = float(data.get('Age', ''))
         if age < 0 or age > 120:
             errors.append("Age phải trong khoảng 0–120")
     except (ValueError, TypeError):
         errors.append("Age phải là số (vd: 22 hoặc 22.5)")
-    # --- Giá vé ---
+    # Giá vé
     try:
         fare = float(data.get('Fare', ''))
         if fare < 0:
             errors.append("Fare không được âm")
     except (ValueError, TypeError):
         errors.append("Fare phải là số thực (vd: 7.25)")
-    # --- SibSp ---
+    # SibSp
     try:
         sibsp = int(data.get('SibSp', ''))
         if sibsp < 0 or sibsp > 10:
             errors.append("SibSp phải trong khoảng 0–10")
     except (ValueError, TypeError):
         errors.append("SibSp phải là số nguyên")
-    # --- Parch ---
+    # Parch
     try:
         parch = int(data.get('Parch', ''))
         if parch < 0 or parch > 10:
             errors.append("Parch phải trong khoảng 0–10")
     except (ValueError, TypeError):
         errors.append("Parch phải là số nguyên")
-    # --- Cảng khởi hành ---
+    # Cảng khởi hành
     embarked = data.get('Embarked', '')
     if embarked not in ['S', 'C', 'Q']:
         errors.append("Embarked phải là 'S', 'C' hoặc 'Q'")
-    # --- Cabin (optional) ---
+    # Cabin (optional)
     cabin = data.get('Cabin', '')
     if cabin and not cabin[0].isalpha():
         errors.append("Cabin phải bắt đầu bằng chữ cái (vd: C85, B20)")
@@ -104,14 +106,13 @@ def save_to_db(data, survived):
             ticket   = data.get('Ticket', '').strip() or None,
             cabin    = data.get('Cabin', '').strip() or None,
             embarked = data['Embarked'],
-            survived = survived       # 0 hoặc 1
+            survived = survived       # 0 / 1
         )
         with app.app_context():
             db.session.add(passenger)
             db.session.commit()
     except Exception as e:
-        print(f"[DB ERROR] Không thể lưu: {e}")
-        # Không raise để không làm hỏng response predict
+        print(e)
 
 
 @app.route('/predict', methods=['POST'])
@@ -133,6 +134,22 @@ def predict():
     save_to_db(data, result)
 
     return jsonify({"result": result})
+
+# http://127.0.0.1:5000/model-info
+MODEL_METADATA_PATH = os.path.join(
+    os.path.dirname(__file__), '..', '..', 'models', 'model_metadata.json'
+)
+
+@app.route('/model-info', methods=['GET'])
+def model_info():
+    """Trả về thông tin metadata của model đã được huấn luyện."""
+    try:
+        with open(MODEL_METADATA_PATH, 'r', encoding='utf-8') as f:
+            metadata = json.load(f)
+        return jsonify(metadata), 200
+    except FileNotFoundError:
+        return jsonify({"error": "Lỗi"})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
