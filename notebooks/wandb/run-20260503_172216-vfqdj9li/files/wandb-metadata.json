@@ -1,0 +1,40 @@
+{
+  "os":  "Windows-10-10.0.26200-SP0",
+  "python":  "CPython 3.11.9",
+  "startedAt":  "2026-05-03T10:22:16.397969Z",
+  "program":  "d:\\titanic-project\\notebooks\\project_analysis.ipynb",
+  "codePath":  "d:\\titanic-project\\notebooks\\project_analysis.ipynb",
+  "codePathLocal":  "project_analysis.ipynb",
+  "git":  {
+    "remote":  "https://github.com/vansong2k5/titanic-project.git",
+    "commit":  "575d8f582ca625a5efb7fcb63594ed858a18ef31"
+  },
+  "email":  "vansong2k5@gmail.com",
+  "root":  "d:\\titanic-project\\notebooks",
+  "host":  "DESKTOP-M0K1MAQ",
+  "executable":  "c:\\Users\\Song\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "cpu_count":  6,
+  "cpu_count_logical":  12,
+  "gpu":  "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "81604374528",
+      "used":  "12319002624"
+    }
+  },
+  "memory":  {
+    "total":  "7966760960"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "memoryTotal":  "4294967296",
+      "cudaCores":  2048,
+      "architecture":  "Ampere",
+      "uuid":  "GPU-73446df7-794c-ef11-efc9-bc7edfcbde21"
+    }
+  ],
+  "cudaVersion":  "11.6",
+  "writerId":  "ihbswevjtd6h84d4407n1axkdtmx83ud"
+}

@@ -15,4 +15,4 @@ db = SQLAlchemy()
 db.init_app(app) 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_pipeline = joblib.load(os.path.join(BASE_DIR, '../../models/titanic_model.joblib'))
+model_pipeline = joblib.load(os.path.join(BASE_DIR, '../../models/model_package.joblib'))

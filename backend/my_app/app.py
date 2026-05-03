@@ -1,6 +1,8 @@
+import os
+
 import numpy as np
 import pandas as pd
-from flask import request, jsonify
+from flask import json, request, jsonify
 from __init__ import app, model_pipeline, db
 from models import Passenger
 
@@ -14,7 +16,6 @@ RARE_TITLES = ['Lady', 'Countess', 'Capt', 'Col', 'Don', 'Dr', 'Major', 'Rev', '
 
 def preprocess_input(df):
     data = pd.DataFrame([df])
-    data['Name'] = data['Name'].apply(lambda x: x if '.' in x else 'Mr. Unknown')
     data['Title'] = data['Name'].str.extract(r' ([A-Za-z]+)\.', expand=False)
 
     data['Title'] = data['Title'].replace(TITLE_MAPPING)
@@ -113,6 +114,7 @@ def save_to_db(data, survived):
     except Exception as e:
         print(f"[DB ERROR] Không thể lưu: {e}")
         # Không raise để không làm hỏng response predict
+
 
 
 @app.route('/predict', methods=['POST'])
