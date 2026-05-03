@@ -117,12 +117,9 @@ def save_to_db(data, survived):
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
-    print(f"=== DỮ LIỆU TỪ FRONTEND ===\n{data}")
-
     # 1. Validate
     errors = validate_input(data)
     if errors:
-        print(f"=== LỖI VALIDATE ===\n{errors}")
         return jsonify({"errors": errors}), 400
 
     # 2. Preprocess
