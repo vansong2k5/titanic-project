@@ -1,8 +1,6 @@
-import os
-
 import numpy as np
 import pandas as pd
-from flask import json, request, jsonify
+from flask import request, jsonify
 from __init__ import app, model_pipeline, db
 from models import Passenger
 
@@ -116,14 +114,15 @@ def save_to_db(data, survived):
         # Không raise để không làm hỏng response predict
 
 
-
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
+    print(f"=== DỮ LIỆU TỪ FRONTEND ===\n{data}")
 
     # 1. Validate
     errors = validate_input(data)
     if errors:
+        print(f"=== LỖI VALIDATE ===\n{errors}")
         return jsonify({"errors": errors}), 400
 
     # 2. Preprocess
