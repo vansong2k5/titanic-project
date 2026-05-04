@@ -2,7 +2,7 @@
     "project_name": "titanic-survival-prediction",
     "best_model_name": "svm",
     "best_cv_accuracy": 0.8257854821235103,
-    "training_date": "2026-05-03 17:23:02",
+    "training_date": "2026-05-04 09:48:21",
     "target": "Survived",
     "models_tried": [
         "logistic_regression",
@@ -10,20 +10,7 @@
         "svm"
     ],
     "best_params": {
-        "C": 1,
-        "break_ties": false,
-        "cache_size": 200,
-        "class_weight": null,
-        "coef0": 0.0,
-        "decision_function_shape": "ovr",
-        "degree": 3,
-        "gamma": "scale",
-        "kernel": "rbf",
-        "max_iter": -1,
-        "probability": true,
-        "random_state": 42,
-        "shrinking": true,
-        "tol": 0.001,
-        "verbose": false
+        "model__C": 1,
+        "model__kernel": "rbf"
     }
 }
